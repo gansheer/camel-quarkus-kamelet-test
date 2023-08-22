@@ -1,0 +1,13 @@
+- route:
+    id: binding1
+    from:
+      uri: kamelet:timer-source/source
+      parameters:
+        period: 1000
+        message: "{ \"foo\": \"John\"}"
+      steps:
+        - kamelet:
+            name: simple-filter-action/action-0
+            parameters:
+              expression: "${body} contains 'not_in'"
+        - to: kamelet:log-sink/sink

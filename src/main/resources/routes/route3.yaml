@@ -1,0 +1,13 @@
+- route:
+    id: binding3
+    from:
+      uri: kamelet:timer-source/source
+      parameters:
+        period: 1000
+        message: "{ \"foo\": \"John\"}"
+      steps:
+        - kamelet:
+            name: simple-filter-action/action-0
+            parameters:
+              expression: "{{myrealexpression}}"
+        - to: kamelet:log-sink/sink
